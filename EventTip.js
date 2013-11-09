@@ -1,7 +1,6 @@
 Games= new Meteor.Collection('games');
 
 if (Meteor.isClient) {
-
   Template.games.events({
     'keyup input#mygame': function(evt) {
         if (evt.keyCode == 13){
