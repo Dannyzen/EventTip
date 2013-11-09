@@ -3,9 +3,18 @@
 </head>
 
 <body>
-  {{> input_field}}
+  {{> games}}
 </body>
 
-<template name="input_field">
-   <input class="list-name-input" id="myevent" type="text"/>
+<template name="games">
+  <div id="games">
+    {{#each getGames}}
+      <div class="display_game">
+        <p>{{name}}}</p>
+      </div>
+    {{/each}}
+  </div>
+  <div id="create_game">
+    <input class="game_name_input" id="mygame" type="text"/>
+  </div>
 </template>

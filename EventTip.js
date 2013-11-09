@@ -1,19 +1,27 @@
-Events= new Meteor.Collection('events');
+Games= new Meteor.Collection('games');
 
 if (Meteor.isClient) {
-  Template.input_field.events({
-    'keyup input#myevent': function(evt) {
+
+  Template.games.events({
+    'keyup input#mygame': function(evt) {
         if (evt.keyCode == 13){
-            var event_name = $('#myevent').val().trim();
-            Events.insert({name:event_name});
-            console.log('save')
+            var game_name = $('#mygame').val().trim();
+            Games.insert({name:game_name});
+            console.log('save');
+            $('#mygame').val('');
         }
+    }
+  });
+
+  Template.games.helpers({
+    getGames: function() {
+      return Games.find({});
     }
   });
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
+  Meteor.publish('games', function () {
+    return Lists.find();
   });
 }
