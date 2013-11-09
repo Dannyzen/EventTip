@@ -1,13 +1,11 @@
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to EventTip.";
-  };
+  Template.create.helpers({
+    
+  });
 
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+  Template.join.helpers({
+    eachEvent: function() {
+      return [0, 1, 2, 3];
     }
   });
 }

@@ -9,14 +9,66 @@
 <template name="page">
   <h1>Welcome to EventTip!</h1>
   <h2>Create a new event or join an existing one</h2>
-  {{> create}}
-  {{> join}}
+  
+  <div id="main-pane">
+    {{> event}}
+  </div>
+  
+  <div id="side-pane">
+    {{> events}}
+  </div>
 </template>
 
-<template name="create">
-createcreatecreate
+<template name="event">
+  {{#if creating}}
+    <div id="event">
+      <p>
+        <input id="create_title" type="text" placeholder="Event title">
+      </p>
+      <p>
+        <input id="create_num_people" class="{{locked_class}}" type="number" placeholder="Number of people required">
+      </p>
+      <div id="create_reqs">
+          {{> create_reqs}}
+      </div>
+      <p>
+        <input id="description" class="{{locked_class}}" type="textarea" placeholder="Event description">
+      </p>
+    </div>  
+  {{else}}
+    {{#if loading}}
+      <div id="event">Loading...</div>
+    {{else}}
+      <div id="event">
+        <p id="view_title">{{title}}</p>
+        <p id="view_num_people">{{num_people}}</p>
+        <div id="create_reqs">
+          {{> create_reqs}}
+        </div>
+      </div>
+    {{/if}}
+  {{/else}}
 </template>
 
-<template name="join">
-joinjoinjoin
+<template name="events">
+  <h3>Join an event</h3>
+  {{#if loading}}
+    <div id="events">Loading...</div>
+  {{else}}
+    <div id="events">
+      {{#each eachEvent}}
+        <div class="event {{selected}}">
+          <div class="display">
+            <p class="event-name {{name_class}}">
+              {{view_event}}
+            </a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</template>
+
+<template name="create_reqs">
+  some req
 </template>
