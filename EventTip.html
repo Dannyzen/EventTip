@@ -3,12 +3,14 @@
 </head>
 
 <body>
-  <div id="side_pane">
-    {{> games}}
-  </div>
+  <div id="container">
+    <div id="side_pane">
+      {{> games}}
+    </div>
 
-  <div id="main_pane">
-    {{> active_game}}
+    <div id="main_pane">
+      {{> active_game}}
+    </div>
   </div>
 </body>
 
@@ -21,12 +23,38 @@
     {{/each}}
   </div>
   <div id="create_game">
-    <input class="game_name_input" id="mygame" type="text"/>
+    <input class="game_name_input" id="mygame" type="text" placeholder="New game..."/>
   </div>
 </template>
 
 <template name="active_game">
   {{#if currentGame}}
     <h3>{{name}}</h3>
+    {{> create_game}}
+  {{else}}
+    {{> view_game}}
   {{/if}}
+</template>
+
+<template name="create_game">
+  <div id="game_num_input">
+    <input class="game_num_input", type="number" placeholder="Number of people required">
+  </div>
+  <div id="game_reqs">
+    {{#each getReqs}}
+      <div class="display_req">
+          <p>{{this.name}}</p>
+      </div>
+    {{/each}}
+  </div>
+  <div id="create_req">
+    <input class="game_req_input" type="text" placeholder="Additional game requirement">
+  </div>
+  <div id="game_description">
+    <input class="game_desc_input" type="textarea" placeholder="Game description">
+  </div>
+</template>
+
+<template name="view_game">
+
 </template>

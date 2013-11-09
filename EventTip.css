@@ -1,1 +1,4 @@
-/* CSS declarations go here */
+div#main_pane, div#side_pane {
+  float: left;
+  padding: 10px;
+}
