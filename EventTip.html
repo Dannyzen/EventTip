@@ -3,7 +3,13 @@
 </head>
 
 <body>
-  {{> games}}
+  <div id="side_pane">
+    {{> games}}
+  </div>
+
+  <div id="main_pane">
+    {{> active_game}}
+  </div>
 </body>
 
 <template name="games">
@@ -17,4 +23,10 @@
   <div id="create_game">
     <input class="game_name_input" id="mygame" type="text"/>
   </div>
+</template>
+
+<template name="active_game">
+  {{#if currentGame}}
+    <h3>{{name}}</h3>
+  {{/if}}
 </template>
