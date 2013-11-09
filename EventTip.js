@@ -1,13 +1,13 @@
-if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to EventTip.";
-  };
+Events= new Meteor.Collection('events');
 
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+if (Meteor.isClient) {
+  Template.input_field.events({
+    'keyup input#myevent': function(evt) {
+        if (evt.keyCode == 13){
+            var event_name = $('#myevent').val().trim();
+            Events.insert({name:event_name});
+            console.log('save')
+        }
     }
   });
 }
